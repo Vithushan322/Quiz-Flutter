@@ -29,7 +29,7 @@ class StartScreen extends StatelessWidget {
           ),
           Text(
             'Learn Flutter the fun way!',
-            style: GoogleFonts.tiltNeon(
+            style: GoogleFonts.ubuntu(
               color: Colors.white,
               fontSize: 25,
             ),
@@ -50,7 +50,7 @@ class StartScreen extends StatelessWidget {
             ),
             label: Text(
               'Start Quiz',
-              style: GoogleFonts.tiltNeon(),
+              style: GoogleFonts.ubuntu(),
             ),
           ),
         ],

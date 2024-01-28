@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:quiz_app/data/questions.dart';
-import 'package:quiz_app/questions_screen.dart';
-import 'package:quiz_app/start_screen.dart';
+import 'package:quiz_app/screens/question_screen/questions_screen.dart';
+import 'package:quiz_app/screens/summary_screen/result_screen.dart';
+import 'package:quiz_app/screens/start_screen/start_screen.dart';
 
 const startAlignment = Alignment.topLeft;
 const endAlignment = Alignment.bottomRight;
@@ -21,8 +22,26 @@ class _QuizState extends State<Quiz> {
 
   @override
   void initState() {
-    activeScreen = StartScreen(switchScreen);
+    activeScreen = StartScreen(startQuiz);
     super.initState();
+  }
+
+  void startQuiz() {
+    setState(() {
+      selectedAnswers = [];
+      activeScreen = QuestionsScreen(onSelectAnswer: chooseAnswer);
+    });
+  }
+
+  void chooseAnswer(String answer) {
+    selectedAnswers.add(answer);
+
+    if (selectedAnswers.length == questions.length) {
+      setState(() {
+        activeScreen =
+            ResultScreen(chosenAnswers: selectedAnswers, startQuiz: startQuiz);
+      });
+    }
   }
 
   @override
@@ -34,8 +53,8 @@ class _QuizState extends State<Quiz> {
           decoration: const BoxDecoration(
             gradient: LinearGradient(
               colors: [
-                Color.fromARGB(255, 26, 2, 80),
-                Color.fromARGB(255, 22, 29, 123),
+                Color.fromARGB(255, 96, 55, 191),
+                Color.fromARGB(255, 21, 27, 112),
               ],
               begin: startAlignment,
               end: endAlignment,
@@ -45,22 +64,5 @@ class _QuizState extends State<Quiz> {
         ),
       ),
     );
-  }
-
-  void switchScreen() {
-    setState(() {
-      activeScreen = QuestionsScreen(onSelectAnswer: chooseAnswer);
-    });
-  }
-
-  void chooseAnswer(String answer) {
-    selectedAnswers.add(answer);
-
-    if (selectedAnswers.length == questions.length) {
-      setState(() {
-        selectedAnswers = [];
-        activeScreen = StartScreen(switchScreen);
-      });
-    }
   }
 }

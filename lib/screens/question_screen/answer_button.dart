@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class AnswerButton extends StatelessWidget {
   const AnswerButton(
@@ -16,7 +17,7 @@ class AnswerButton extends StatelessWidget {
           vertical: 10,
           horizontal: 40,
         ),
-        backgroundColor: const Color.fromARGB(255, 156, 4, 238),
+        backgroundColor: const Color.fromARGB(255, 35, 3, 108),
         foregroundColor: Colors.white,
         // shape: RoundedRectangleBorder(
         //   borderRadius: BorderRadius.circular(40),
@@ -24,6 +25,7 @@ class AnswerButton extends StatelessWidget {
       ),
       child: Text(
         answerText,
+        style: GoogleFonts.ubuntu(),
         textAlign: TextAlign.center,
       ),
     );
